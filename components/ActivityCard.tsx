@@ -66,7 +66,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
               variant="outline"
               size="sm"
               className="flex-1"
-              disabled={!isConnected} 
+              disabled={!isConnected}
               onClick={() => onEdit?.(activity)}
             >
               {!isConnected ? "Connect your wallet to join" : "Join"}
@@ -175,7 +175,12 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
           </Badge>
         </div>
 
-        <p>{activity.description}</p>
+        <p
+          className="overflow-hidden text-ellipsis break-words 
+                -webkit-box -webkit-line-clamp-3 -webkit-box-orient-vertical"
+        >
+          {activity.description}
+        </p>
       </CardContent>
 
       <CardFooter className="flex gap-2">{renderActionButton()}</CardFooter>

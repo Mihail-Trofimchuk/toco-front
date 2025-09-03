@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
 export default function RegisterPage() {
@@ -43,7 +49,12 @@ export default function RegisterPage() {
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, role: "participant" }),
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          role: "participant",
+        }),
       });
 
       const data = await res.json();
@@ -69,65 +80,78 @@ export default function RegisterPage() {
           <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-blue-600 hover:underline font-medium">
+            <Link
+              href="/auth/login"
+              className="text-blue-600 hover:underline font-medium"
+            >
               Login
             </Link>
           </p>
         </CardHeader>
 
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <Label htmlFor="username" className="mb-1">Full Name</Label>
-            <Input
-              id="username"
-              type="text"
-              placeholder="John Doe"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
+        <form onSubmit={handleRegister}>
+          <CardContent className="flex flex-col gap-4">
+            <div className="flex flex-col">
+              <Label htmlFor="username" className="mb-1">
+                Full Name
+              </Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="John Doe"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
 
-          <div className="flex flex-col">
-            <Label htmlFor="email" className="mb-1">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="example@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+            <div className="flex flex-col">
+              <Label htmlFor="email" className="mb-1">
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-          <div className="flex flex-col">
-            <Label htmlFor="password" className="mb-1">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="At least 6 characters"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+            <div className="flex flex-col">
+              <Label htmlFor="password" className="mb-1">
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="At least 6 characters"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
 
-          <div className="flex flex-col">
-            <Label htmlFor="confirmPassword" className="mb-1">Confirm Password</Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
+            <div className="flex flex-col">
+              <Label htmlFor="confirmPassword" className="mb-1">
+                Confirm Password
+              </Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
 
-          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-        </CardContent>
+            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          </CardContent>
 
-        <CardFooter className="flex justify-center">
-          <Button className="w-full" onClick={handleRegister} disabled={loading}>
-            {loading ? "Registering..." : "Register"}
-          </Button>
-        </CardFooter>
+          <CardFooter className="flex justify-center">
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Registering..." : "Register"}
+            </Button>
+          </CardFooter>
+        </form>
       </Card>
     </div>
   );

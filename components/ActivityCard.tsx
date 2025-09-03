@@ -148,14 +148,16 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
           </CardTitle>
         </div>
 
-        <Button
-          size="sm"
-          variant="ghost"
-          className="text-red-600 hover:bg-red-100 dark:hover:bg-red-800"
-          onClick={() => onDelete(activity.uuid)}
-        >
-          <Trash2 className="w-4 h-4" />
-        </Button>
+        {role === "tocos" && (
+          <Button
+            size="sm"
+            variant="ghost"
+            className="text-red-600 hover:bg-red-100 dark:hover:bg-red-800"
+            onClick={() => onDelete(activity.uuid)}
+          >
+            <Trash2 className="w-4 h-4" />
+          </Button>
+        )}
       </CardHeader>
 
       <CardContent className="text-gray-700 dark:text-gray-300">

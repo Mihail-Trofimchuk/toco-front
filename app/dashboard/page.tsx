@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import Activities from "@/components/pages/ActivityPage";
 import AppLayout from "@/components/layout/AppLayout/AppLayout";
 
-export default async function ParticipantDashboard() {
+export default async function Dashboard() {
   // useRoleGuard(["participant"]);
 
   const cookieStore = await cookies();

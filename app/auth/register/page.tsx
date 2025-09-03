@@ -61,7 +61,7 @@ export default function RegisterPage() {
 
       if (!res.ok) throw new Error(data.error || "Registration failed");
 
-      router.push("/dashboard/participant");
+      router.push("/dashboard");
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);

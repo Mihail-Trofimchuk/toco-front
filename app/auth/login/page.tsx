@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import jwt from "jsonwebtoken";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -29,26 +28,11 @@ export default function LoginPage() {
         credentials: "include",
       });
 
-      let { token } = await res.json();
-
-      if (token?.startsWith("Bearer ")) {
-        token = token.slice(7);
-      }
-
-      const decodedData = jwt.decode(token) as { role: string };
-
-      if (decodedData?.role === "tocos") {
-
-        console.log('/dashboard/client');
-        router.push("/dashboard/client");
-      } else if (decodedData?.role === "participant") {
-        router.push("/dashboard/participant");
-      } else {
-        router.push("/auth/login"); 
-      }
-
       if (!res.ok) throw new Error("Invalid credentials");
+    
+      router.push("/dashboard");
     } catch (err: unknown) {
+      router.push("/auth/login")
       if (err instanceof Error) {
         setError(err.message);
       } else {

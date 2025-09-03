@@ -24,8 +24,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   };
 
   const headerTitle = useMemo(() => {
-    if (pathname.startsWith("/dashboard/client")) return "Client Dashboard";
-    if (pathname.startsWith("/dashboard/participant")) return "Participant Dashboard";
+    if (pathname.startsWith("/dashboard")) return "Dashboard";
     if (pathname.startsWith("/transactions")) return "Transactions";
     if (pathname.startsWith("/available")) return "Available Resources";
     if (pathname.startsWith("/wallet")) return "Wallet";

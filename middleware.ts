@@ -40,9 +40,8 @@ export const config = {
   matcher: [
     "/available",
     "/transactions",
-    "/dashboard/:path*",
-    "/dashboard/client",
-    "/wallet"
+    "/wallet",
+    "/dashboard",
   ],
   runtime: "nodejs", 
 };

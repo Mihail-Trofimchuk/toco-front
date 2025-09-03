@@ -15,7 +15,7 @@ import {
 const items = [
   {
     title: "Activity",
-    url: "/dashboard/client",
+    url: "/dashboard",
     icon: Home,
   },
   {
